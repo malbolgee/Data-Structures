@@ -1,6 +1,7 @@
 void push(tipoPilha *pilha, tipoDado dado)
 {
 
+
 	tipoNo *auxiliar;
 
 	auxiliar = (tipoNo *) malloc(sizeof(tipoNo));
