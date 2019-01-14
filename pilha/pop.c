@@ -1,6 +1,7 @@
 void pop(tipoPilha *pilha)
 {
 
+
 	tipoNo *auxiliar;
 
 	auxiliar = pilha->primeiro;
