@@ -196,7 +196,7 @@ void binary__tree__bfs(bin_tree *__root, const unsigned __size)
 {
 
 	unsigned start, end;
-	bin_tree *queue, *aux;
+	bin_tree *queue;
 
 	queue = (bin_tree *) malloc(__size * sizeof(bin_tree));
 	queue[0] = *__root;
@@ -213,6 +213,8 @@ void binary__tree__bfs(bin_tree *__root, const unsigned __size)
 			queue[end++] = *aux->left;
 		if (aux->right)
 			queue[end++] = *aux->right;
+
+		free(aux);
 
 	}
 
