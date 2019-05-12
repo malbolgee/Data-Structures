@@ -3,6 +3,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+static bin_tree * __find__max__value__node(bin_tree *__root);
+static bin_tree * __find__min__value__node(bin_tree *__root);
+static bin_tree * __lca(bin_tree *__root, const int __n1, const int __n2);
+
 void make__binary__tree(bin_tree **__root)
 {
 
@@ -192,8 +196,11 @@ unsigned binary__tree__size(bin_tree *__root)
 
 }
 
-void binary__tree__bfs(bin_tree *__root, const unsigned __size)
+void binary__tree__bfs(const bin_tree *__root, const unsigned __size)
 {
+
+	if (!__root)
+		return;
 
 	unsigned start, end;
 	bin_tree *queue;
@@ -231,7 +238,6 @@ bin_tree * binary__tree__lca(bin_tree *__root, const int __n1, const int __n2)
 	return __lca(__root, __n1, __n2);
 
 }
-
 
 static bin_tree * __lca(bin_tree *__root, const int __n1, const int __n2)
 {
