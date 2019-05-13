@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-
 void make__queue(queue_t *__queue)
 {
 
@@ -32,9 +31,10 @@ void push__queue(queue_t *__queue, const int __data)
 
 }
 
-queue_node * queue__pop(queue_t *__queue)
+int dequeue(queue_t *__queue)
 {
 
+	int __return;
 	queue_node *aux;
 
 	if (__queue->first)
@@ -43,34 +43,84 @@ queue_node * queue__pop(queue_t *__queue)
 		if (__queue->first->next)
 		{
 
-			// *retorno = __queue->first->dado;
+			__return = __queue->first->data;
 			aux = __queue->first;
 			__queue->first = __queue->first->next;
 			free(aux);
-			return true;
+			return __return;
 
 		}
 		else
 		{
 
-			// *retorno = __queue->first->dado;
+			__return = __queue->first->data;
 			aux = __queue->first;
 			__queue->first = __queue->last = NULL;
 			free(aux);
-			return true;
+			return __return;
 
 		}
 
 	}
 	else
-		return NULL;
+		return -__INF;
 
 }
 
-
-bool is__empty__queue(queue_t *__queue)
+bool is__empty__queue(const queue_t *__queue)
 {
 
 	return (__queue->first == NULL);
+
+}
+
+void print__queue(const queue_t *__queue)
+{
+
+	queue_node *aux = __queue->first;
+	while (aux)
+	{
+
+		printf("%d ", aux->data);
+		aux = aux->next;
+
+	}
+
+}
+
+int queue__front(const queue_t *__queue)
+{
+
+	return __queue->first->data;
+
+}
+
+void array__to__queue(queue_t *__queue, const int *__array, const unsigned __size)
+{
+
+	for (unsigned i = 0; i < __size; ++i)
+		push__queue(__queue, __array[i]);
+
+}
+
+void erase__queue(queue_t *__queue)
+{
+
+	if (!__queue->first)
+		return;
+
+	queue_node *tmp;
+	queue_node *aux = __queue->first;
+
+	while (aux)
+	{
+
+		tmp = aux;
+		aux = aux->next;
+		free(tmp);
+
+	}
+
+	__queue->first = __queue->last = NULL;
 
 }
