@@ -3,24 +3,24 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-static bin_tree * __find__max__value__node(bin_tree *__root);
-static bin_tree * __find__min__value__node(bin_tree *__root);
-static bin_tree * __lca(bin_tree *__root, const int __n1, const int __n2);
+static bin_tree_t * __find__max__value__node(bin_tree_t *__root);
+static bin_tree_t * __find__min__value__node(bin_tree_t *__root);
+static bin_tree_t * __lca(bin_tree_t *__root, const int __n1, const int __n2);
 
-void make__binary__tree(bin_tree **__root)
+void make__binary__tree(bin_tree_t **__root)
 {
 
 	*__root = NULL;
 
 }
 
-bin_tree * binary__tree__push(bin_tree *__root, const int __data)
+bin_tree_t * binary__tree__push(bin_tree_t *__root, const int __data)
 {
 
 	if (!__root)
 	{
 
-		__root = (bin_tree *) malloc(sizeof(bin_tree));
+		__root = (bin_tree_t *) malloc(sizeof(bin_tree_t));
 		__root->id = __data;
 		__root->left = __root->right = NULL;
 
@@ -34,7 +34,7 @@ bin_tree * binary__tree__push(bin_tree *__root, const int __data)
 
 }
 
-bin_tree * binary__tree__search(bin_tree *__root, const int __key)
+bin_tree_t * binary__tree__search(bin_tree_t *__root, const int __key)
 {
 	
 	if (!__root)
@@ -49,7 +49,7 @@ bin_tree * binary__tree__search(bin_tree *__root, const int __key)
 	
 }
 
-void array__to__binary__tree(bin_tree **__root, const int *__array, const unsigned __size)
+void array__to__binary__tree(bin_tree_t **__root, const int *__array, const unsigned __size)
 {
 
 	unsigned i;
@@ -58,7 +58,7 @@ void array__to__binary__tree(bin_tree **__root, const int *__array, const unsign
 
 }
 
-void binary__tree__infix(const bin_tree *__root)
+void binary__tree__infix(const bin_tree_t *__root)
 {
 
 	if (__root)
@@ -72,7 +72,7 @@ void binary__tree__infix(const bin_tree *__root)
 
 }
 
-void binary__tree__postfix(const bin_tree *__root)
+void binary__tree__postfix(const bin_tree_t *__root)
 {
 
 	if (__root)
@@ -86,7 +86,7 @@ void binary__tree__postfix(const bin_tree *__root)
 
 }
 
-void binary__tree__prefix(const bin_tree *__root)
+void binary__tree__prefix(const bin_tree_t *__root)
 {
 
 	if (__root)
@@ -100,7 +100,7 @@ void binary__tree__prefix(const bin_tree *__root)
 
 }
 
-static bin_tree * __find__max__value__node(bin_tree *__root)
+static bin_tree_t * __find__max__value__node(bin_tree_t *__root)
 {
 
 	if (!__root)
@@ -112,7 +112,7 @@ static bin_tree * __find__max__value__node(bin_tree *__root)
 
 }
 
-static bin_tree * __find__min__value__node(bin_tree *__root)
+static bin_tree_t * __find__min__value__node(bin_tree_t *__root)
 {
 
 	if (!__root)
@@ -124,10 +124,10 @@ static bin_tree * __find__min__value__node(bin_tree *__root)
 
 }
 
-bin_tree * binary__tree__pop(bin_tree *__root, const int __key)
+bin_tree_t * binary__tree__pop(bin_tree_t *__root, const int __key)
 {
 
-	bin_tree *tmp;
+	bin_tree_t *tmp;
 
 	if (!__root)
 		return NULL;
@@ -160,7 +160,7 @@ bin_tree * binary__tree__pop(bin_tree *__root, const int __key)
 
 }
 
-bin_tree * binary__tree__erase(bin_tree *__root)
+bin_tree_t * binary__tree__erase(bin_tree_t *__root)
 {
 
 	if (!__root)
@@ -172,7 +172,7 @@ bin_tree * binary__tree__erase(bin_tree *__root)
 
 }
 
-int binary__tree__height(const bin_tree *__root)
+int binary__tree__height(const bin_tree_t *__root)
 {
 
 	int lefth, righth;
@@ -186,7 +186,7 @@ int binary__tree__height(const bin_tree *__root)
 
 }
 
-unsigned binary__tree__size(bin_tree *__root)
+unsigned binary__tree__size(bin_tree_t *__root)
 {
 
 	if (!__root)
@@ -196,23 +196,23 @@ unsigned binary__tree__size(bin_tree *__root)
 
 }
 
-void binary__tree__bfs(const bin_tree *__root, const unsigned __size)
+void binary__tree__bfs(const bin_tree_t *__root, const unsigned __size)
 {
 
 	if (!__root)
 		return;
 
 	unsigned start, end;
-	bin_tree *queue;
+	bin_tree_t *queue;
 
-	queue = (bin_tree *) malloc(__size * sizeof(bin_tree));
+	queue = (bin_tree_t *) malloc(__size * sizeof(bin_tree_t));
 	queue[0] = *__root;
 	start = 0; end = 1;
 
 	while (end > start)
 	{
 
-		bin_tree *aux = (bin_tree *) malloc(sizeof(bin_tree));
+		bin_tree_t *aux = (bin_tree_t *) malloc(sizeof(bin_tree_t));
 		*aux = queue[start++];
 		printf("%u ", aux->id);
 		
@@ -229,7 +229,7 @@ void binary__tree__bfs(const bin_tree *__root, const unsigned __size)
 
 }
 
-bin_tree * binary__tree__lca(bin_tree *__root, const int __n1, const int __n2)
+bin_tree_t * binary__tree__lca(bin_tree_t *__root, const int __n1, const int __n2)
 {
 
 	if (!__root || !binary__tree__search(__root, __n1) || !binary__tree__search(__root, __n2))
@@ -239,7 +239,7 @@ bin_tree * binary__tree__lca(bin_tree *__root, const int __n1, const int __n2)
 
 }
 
-static bin_tree * __lca(bin_tree *__root, const int __n1, const int __n2)
+static bin_tree_t * __lca(bin_tree_t *__root, const int __n1, const int __n2)
 {
 
 	if (__root)
