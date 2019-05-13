@@ -2,30 +2,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int __subtree__height(const avl_tree *__root);
-static avl_tree * __avl__rotate__right(avl_tree *__node);
-static avl_tree * __avl__rotate__left(avl_tree *__node);
-static avl_tree * __RR(avl_tree *__node);
-static avl_tree * __LL(avl_tree *__node);
-static avl_tree * __RL(avl_tree *__node);
-static avl_tree * __LR(avl_tree *__node);
-static avl_tree * __lca(avl_tree *__root, const int __n1, const int __n2);
-static int __balancing__factor(const avl_tree *__root);
+static int __subtree__height(const avl_tree_t *__root);
+static avl_tree_t * __avl__rotate__right(avl_tree_t *__node);
+static avl_tree_t * __avl__rotate__left(avl_tree_t *__node);
+static avl_tree_t * __RR(avl_tree_t *__node);
+static avl_tree_t * __LL(avl_tree_t *__node);
+static avl_tree_t * __RL(avl_tree_t *__node);
+static avl_tree_t * __LR(avl_tree_t *__node);
+static avl_tree_t * __lca(avl_tree_t *__root, const int __n1, const int __n2);
+static int __balancing__factor(const avl_tree_t *__root);
 
-void make__avl__tree(avl_tree **__root)
+void make__avl__tree(avl_tree_t **__root)
 {
 
 	*__root =  NULL;
 
 }
 
-avl_tree * avl__tree__push(avl_tree *__root, const int __data)
+avl_tree_t * avl__tree__push(avl_tree_t *__root, const int __data)
 {
 
 	if (!__root)
 	{
 
-		__root = (avl_tree *) malloc(sizeof(avl_tree));
+		__root = (avl_tree_t *) malloc(sizeof(avl_tree_t));
 		__root->left = __root->right = NULL;
 		__root->id = __data;
 
@@ -58,10 +58,10 @@ avl_tree * avl__tree__push(avl_tree *__root, const int __data)
 
 }
 
-avl_tree * avl__tree__pop(avl_tree *__root, const int __key)
+avl_tree_t * avl__tree__pop(avl_tree_t *__root, const int __key)
 {
 
-	avl_tree *aux;
+	avl_tree_t *aux;
 
 	if (!__root)
 		return NULL;
@@ -116,7 +116,7 @@ avl_tree * avl__tree__pop(avl_tree *__root, const int __key)
 }	
 
 
-static int __subtree__height(const avl_tree *__root)
+static int __subtree__height(const avl_tree_t *__root)
 {
 
 	int lefth, righth;
@@ -137,10 +137,10 @@ static int __subtree__height(const avl_tree *__root)
 
 }
 
-static avl_tree * __avl__rotate__right(avl_tree *__node)
+static avl_tree_t * __avl__rotate__right(avl_tree_t *__node)
 {
 
-	avl_tree *aux;
+	avl_tree_t *aux;
 	aux = __node->left;
 	__node->left = aux->right;
 	aux->right = __node;
@@ -150,10 +150,10 @@ static avl_tree * __avl__rotate__right(avl_tree *__node)
 
 }
 
-static avl_tree * __avl__rotate__left(avl_tree *__node)
+static avl_tree_t * __avl__rotate__left(avl_tree_t *__node)
 {
 
-	avl_tree *aux;
+	avl_tree_t *aux;
 	aux = __node->right;
 	__node->right = aux->left;
 	aux->left = __node;
@@ -163,7 +163,7 @@ static avl_tree * __avl__rotate__left(avl_tree *__node)
 
 }
 
-static avl_tree * __LL(avl_tree *__node)
+static avl_tree_t * __LL(avl_tree_t *__node)
 {
 
 	__node = __avl__rotate__left(__node);
@@ -171,7 +171,7 @@ static avl_tree * __LL(avl_tree *__node)
 
 }
 
-static avl_tree * __RR(avl_tree *__node)
+static avl_tree_t * __RR(avl_tree_t *__node)
 {
 
 	__node = __avl__rotate__right(__node);
@@ -179,7 +179,7 @@ static avl_tree * __RR(avl_tree *__node)
 
 }
 
-static avl_tree * __LR(avl_tree *__node)
+static avl_tree_t * __LR(avl_tree_t *__node)
 {
 
 	__node->left = __avl__rotate__left(__node->left);
@@ -188,7 +188,7 @@ static avl_tree * __LR(avl_tree *__node)
 
 }
 
-static avl_tree * __RL(avl_tree *__node)
+static avl_tree_t * __RL(avl_tree_t *__node)
 {
 
 	__node->right = __avl__rotate__right(__node->right);
@@ -197,7 +197,7 @@ static avl_tree * __RL(avl_tree *__node)
 
 }
 
-static int __balancing__factor(const avl_tree *__root)
+static int __balancing__factor(const avl_tree_t *__root)
 {
 
 	int lefth, righth;
@@ -218,7 +218,7 @@ static int __balancing__factor(const avl_tree *__root)
 
 }
 
-void avl__tree__infix(const avl_tree *__root)
+void avl__tree__infix(const avl_tree_t *__root)
 {
 
 	if (__root)
@@ -232,7 +232,7 @@ void avl__tree__infix(const avl_tree *__root)
 
 }
 
-void avl__tree__postfix(const avl_tree *__root)
+void avl__tree__postfix(const avl_tree_t *__root)
 {
 
 	if (__root)
@@ -246,7 +246,7 @@ void avl__tree__postfix(const avl_tree *__root)
 
 }
 
-void avl__tree__prefix(const avl_tree *__root)
+void avl__tree__prefix(const avl_tree_t *__root)
 {
 
 	if (__root)
@@ -260,7 +260,7 @@ void avl__tree__prefix(const avl_tree *__root)
 
 }
 
-int avl__tree__height(const avl_tree *__root)
+int avl__tree__height(const avl_tree_t *__root)
 {
 
 	int lefth, righth;
@@ -274,7 +274,7 @@ int avl__tree__height(const avl_tree *__root)
 
 }
 
-avl_tree * avl__tree__search(avl_tree *__root, const int __key)
+avl_tree_t * avl__tree__search(avl_tree_t *__root, const int __key)
 {
 
 	if (!__root)
@@ -289,7 +289,7 @@ avl_tree * avl__tree__search(avl_tree *__root, const int __key)
 
 }
 
-avl_tree * avl__tree__erase(avl_tree *__root)
+avl_tree_t * avl__tree__erase(avl_tree_t *__root)
 {
 
 	if (!__root)
@@ -305,7 +305,7 @@ avl_tree * avl__tree__erase(avl_tree *__root)
 
 }
 
-avl_tree * array__to__avl__tree(avl_tree *__root, const int *__array, const unsigned __size)
+avl_tree_t * array__to__avl__tree(avl_tree_t *__root, const int *__array, const unsigned __size)
 {
 
 	unsigned i;
@@ -316,7 +316,7 @@ avl_tree * array__to__avl__tree(avl_tree *__root, const int *__array, const unsi
 
 }
 
-unsigned avl__tree__size(avl_tree *__root)
+unsigned avl__tree__size(avl_tree_t *__root)
 {
 
 	if (!__root)
@@ -326,7 +326,7 @@ unsigned avl__tree__size(avl_tree *__root)
 
 }
 
-avl_tree * avl__tree__lca(avl_tree *__root, const int __n1, const int __n2)
+avl_tree_t * avl__tree__lca(avl_tree_t *__root, const int __n1, const int __n2)
 {
 
 	if (!__root || !avl__tree__search(__root, __n1) || !avl__tree__search(__root, __n2))
@@ -335,7 +335,7 @@ avl_tree * avl__tree__lca(avl_tree *__root, const int __n1, const int __n2)
 	return __lca(__root, __n1, __n2);
 
 }
-static avl_tree * __lca(avl_tree *__root, const int __n1, const int __n2)
+static avl_tree_t * __lca(avl_tree_t *__root, const int __n1, const int __n2)
 {
 
 	if (__root)
@@ -352,23 +352,23 @@ static avl_tree * __lca(avl_tree *__root, const int __n1, const int __n2)
 
 }
 
-void avl__tree__bfs(const avl_tree *__root, const unsigned __size)
+void avl__tree__bfs(const avl_tree_t *__root, const unsigned __size)
 {
 
 	if (!__root)
 		return;
 
-	avl_tree *queue;
+	avl_tree_t *queue;
 	unsigned start, end;
 
-	queue = (avl_tree *) malloc(__size * sizeof(avl_tree));
+	queue = (avl_tree_t *) malloc(__size * sizeof(avl_tree_t));
 	queue[0] = *__root;
 	start = 0; end = 1;
 
 	while (end > start)
 	{
 
-		avl_tree *aux = (avl_tree *) malloc(sizeof(avl_tree));
+		avl_tree_t *aux = (avl_tree_t *) malloc(sizeof(avl_tree_t));
 		*aux = queue[start++];
 		printf("%u ", aux->id);
 		
