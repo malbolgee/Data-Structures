@@ -13,7 +13,7 @@ int main (int argc, char **argv)
 {
 
 	srand(time(NULL));
-	avl_tree *tree;
+	avl_tree_t *tree;
 
 	make__avl__tree(&tree);
 	int vet[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -33,7 +33,7 @@ int main (int argc, char **argv)
 	avl__tree__bfs(tree, 10);
 	LOG;
 
-	avl_tree *lca;
+	avl_tree_t *lca;
 
 	puts("Lowest Common Ancestor of Two Nodes");
 	lca = avl__tree__lca(tree, 5, 10);

@@ -14,7 +14,7 @@ int main (int argc, char **argv)
 	srand(time(NULL));
 	int vet[7] = {20, 8,4,12,10,14,22};
 
-	bin_tree *arvore;
+	bin_tree_t *arvore;
 
 	for (int i = 0; i < 7; ++i)
 		printf("%d ", vet[i]);
@@ -28,7 +28,7 @@ int main (int argc, char **argv)
 	printf("%u\n", binary__tree__size(arvore));
 	binary__tree__infix(arvore);
 	printf("\n");
-	bin_tree *aux = binary__tree__lca(arvore, 4, 15);
+	bin_tree_t *aux = binary__tree__lca(arvore, 4, 15);
 	printf("%d\n", aux ? aux->id : -1);
 
 }
